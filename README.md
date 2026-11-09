@@ -98,7 +98,17 @@ docs/           deployment and security docs
 
 ## Deployment
 
-### Free hosting: Render + Neon
+### Free hosting: Hugging Face Spaces + Neon (no card needed)
+
+1. **Database:** create a free PostgreSQL project on [Neon](https://neon.tech). Convert its connection string `postgresql://USER:PASS@HOST/DB?...` into the `DB_URL`, `DB_USERNAME` and `DB_PASSWORD` values described in the Render section below.
+2. **Space:** on [huggingface.co/new-space](https://huggingface.co/new-space), choose the **Docker** SDK and the **Blank** template. Then upload the two files from [`deploy/huggingface/`](deploy/huggingface/) (`Dockerfile` and `README.md`). The Space clones this GitHub repo and builds it.
+3. **Secrets:** in the Space's **Settings → Variables and secrets**, add as *Secrets*: `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `JWT_SECRET` (from `openssl rand -base64 48`), `MIDTRANS_SERVER_KEY`, `MIDTRANS_CLIENT_KEY`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`. Add `MIDTRANS_PUBLIC_BASE_URL=https://<username>-<space>.hf.space`.
+4. Open the app at `https://<username>-<space>.hf.space`. It doesn't load inside the embedded Hugging Face page, because the app blocks being framed.
+5. **Auto-redeploy (optional):** in this GitHub repo's Settings → Secrets and variables → Actions, add the secret `HF_TOKEN` (a Hugging Face token with write access) and the variable `HF_SPACE` (`<username>/<space>`). Each push to `main` then rebuilds the Space through `.github/workflows/deploy-huggingface.yml`.
+
+Free Spaces sleep after a period of inactivity, and the first request after that is slow.
+
+### Alternative: Render + Neon
 
 The repo includes a `Dockerfile` (a multi-stage build tuned for 512 MB instances) and a `render.yaml` Blueprint.
 

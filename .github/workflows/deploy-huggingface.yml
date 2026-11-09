@@ -1,0 +1,29 @@
+# Rebuilds the Hugging Face Space whenever main changes.
+# Setup (GitHub repo → Settings → Secrets and variables → Actions):
+#   secret   HF_TOKEN  – Hugging Face access token with write access to the Space
+#   variable HF_SPACE  – Space id, e.g. "your-username/eco-nomz"
+name: Deploy to Hugging Face Space
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  rebuild-space:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger factory rebuild
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ vars.HF_SPACE }}
+        run: |
+          if [ -z "$HF_TOKEN" ] || [ -z "$HF_SPACE" ]; then
+            echo "HF_TOKEN or HF_SPACE not configured; skipping."
+            exit 0
+          fi
+          status=$(curl -sS -o response.txt -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $HF_TOKEN" \
+            "https://huggingface.co/api/spaces/$HF_SPACE/restart?factory=true")
+          echo "HTTP $status"
+          [ "$status" -lt 300 ] || { cat response.txt; exit 1; }
