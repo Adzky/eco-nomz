@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{error.title})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="page-container error-state">
+    <section class="content-card">
+        <p class="eyebrow" th:text="#{error.eyebrow}">Let's get you back on track</p>
+        <h1 th:text="#{error.title}">We couldn't complete that request</h1>
+        <p th:text="#{error.intro}">Something unexpected happened. Please return to Eco-Nomz and try again.</p>
+        <a class="button" th:href="@{/}" th:text="#{error.home}">Return to Eco-Nomz</a>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{nav.account})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="page-container">
+    <section class="dashboard-welcome content-card">
+        <p class="eyebrow" th:text="#{dashboard.eyebrow}">Your Eco-Nomz dashboard</p>
+        <h1 th:text="#{dashboard.welcome}">Welcome back</h1>
+        <p class="page-intro"><span th:text="#{dashboard.signedIn}">Signed in as</span> <strong th:text="${email}"></strong></p>
+    </section>
+    <section class="dashboard-actions" th:if="${role == 'ROLE_RESTAURANT_OWNER'}">
+        <div class="page-heading"><div><h2 th:text="#{dashboard.ownerHeading}">Grow your restaurant's impact</h2>
+            <p th:text="#{dashboard.ownerIntro}">Add your restaurant, publish a surplus offer, and manage customer pickups.</p></div></div>
+        <div class="action-grid">
+            <a class="action-card" th:href="@{/owner/restaurant}"><strong th:text="#{dashboard.manageRestaurants}">Manage restaurants</strong><span><span th:text="#{dashboard.setupRestaurant}">Set up and publish your restaurant profile</span> →</span></a>
+            <a class="action-card" th:href="@{/owner/offers}"><strong th:text="#{dashboard.manageOffers}">Manage offers</strong><span><span th:text="#{dashboard.createOffers}">Create discounted surplus food offers</span> →</span></a>
+            <a class="action-card" th:href="@{/owner/orders}"><strong th:text="#{dashboard.viewReservations}">View reservations</strong><span><span th:text="#{dashboard.reviewOrders}">Review customer orders and verify pickups</span> →</span></a>
+        </div>
+    </section>
+    <section class="dashboard-actions" th:if="${role == 'ROLE_CUSTOMER'}">
+        <div class="page-heading"><div><h2 th:text="#{dashboard.customerHeading}">Ready to rescue something delicious?</h2>
+            <p th:text="#{dashboard.customerIntro}">Explore nearby deals or check the pickup details for your reservations.</p></div></div>
+        <div class="action-grid">
+            <a class="action-card" th:href="@{/offers}"><strong th:text="#{dashboard.exploreOffers}">Explore food offers</strong><span><span th:text="#{dashboard.findFreshDeal}">Find a fresh deal from a local restaurant</span> →</span></a>
+            <a class="action-card" th:href="@{/customer/orders}"><strong th:text="#{dashboard.myReservations}">My reservations</strong><span><span th:text="#{dashboard.paymentPickup}">See payment status and pickup instructions</span> →</span></a>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

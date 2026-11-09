@@ -1,0 +1,41 @@
+{
+  "title": "Choose a crop-editor composition",
+  "question": "The layout direction was approved, but the sample image is now corrected to a landscape 1200 by 750 upload. Square uploads should skip cropping. Confirm that option 3 still fits, or tell me what to preserve, revise, or reject.",
+  "options": [
+    {
+      "id": "crop-rail",
+      "kind": "assigned",
+      "label": "Step rail + active editor",
+      "thesis": "A persistent setup rail keeps the owner oriented while the crop task and square preview share the workspace.",
+      "palette": ["#f7f8f3", "#ffffff", "#28630f", "#60ab21", "#ff7a00"],
+      "materials": ["existing Eco-Nomz logo", "soft green canvas", "white editing surfaces"],
+      "viewport": "Desktop owner setup with vertical progress at left, a large crop workspace in the center, preview and requirements at right.",
+      "risk": "The persistent rail may take space away from image editing on narrower screens.",
+      "comp": ".impeccable/mocks/crop-rail.png"
+    },
+    {
+      "id": "crop-split",
+      "kind": "dealt",
+      "label": "Horizontal progress + split editor",
+      "thesis": "A compact progress strip frees the main viewport for a side-by-side crop editor and customer-facing preview.",
+      "palette": ["#f7f8f3", "#ffffff", "#28630f", "#60ab21", "#ff7a00"],
+      "materials": ["existing Eco-Nomz logo", "soft green canvas", "white editing surfaces"],
+      "viewport": "Desktop owner setup with horizontal steps, a crop canvas on the left, and square preview plus requirements on the right.",
+      "risk": "The side-by-side layout may become vertically long on mobile and require a carefully ordered stack.",
+      "comp": ".impeccable/mocks/crop-split.png"
+    },
+    {
+      "id": "crop-focus",
+      "kind": "dealt",
+      "label": "Focused canvas + reassurance panel",
+      "thesis": "The crop canvas leads at generous scale, while a quieter side panel makes the resulting logo and requirements easy to verify.",
+      "palette": ["#f7f8f3", "#ffffff", "#28630f", "#60ab21", "#ff7a00"],
+      "materials": ["existing Eco-Nomz logo", "soft green canvas", "white editing surfaces"],
+      "viewport": "Desktop owner setup with slim progress, a dominant crop canvas, a square side preview, and a strong apply action.",
+      "risk": "The large canvas may visually overemphasize editing relative to confirming the customer-facing result.",
+      "comp": ".impeccable/mocks/crop-focus-landscape.png"
+    }
+  ],
+  "reroll": true,
+  "steer": true
+}

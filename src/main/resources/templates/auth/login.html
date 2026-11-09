@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{auth.login.title})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="auth-layout">
+  <section class="auth-card">
+    <p class="eyebrow" th:text="#{auth.login.eyebrow}">Welcome back</p>
+    <h1 th:text="#{auth.login.title}">Sign in to Eco-Nomz</h1>
+    <p class="page-intro" th:text="#{auth.login.intro}">Pick up where you left off and find your next good-food deal.</p>
+    <p th:if="${registered}" role="status" th:text="#{auth.login.registered}">Your account is ready. Sign in to continue.</p>
+    <p th:if="${loggedOut}" role="status" th:text="#{auth.login.loggedOut}">You have been signed out.</p>
+    <form th:action="@{/login}" th:object="${loginRequest}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <div>
+            <label for="email" th:text="#{common.email}">Email</label>
+            <input id="email" type="email" th:field="*{email}" autocomplete="username" required maxlength="320"
+                   aria-describedby="email-error" th:attr="aria-invalid=${#fields.hasErrors('email')}">
+            <p id="email-error" class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+        <div>
+            <label for="password" th:text="#{common.password}">Password</label>
+            <input id="password" type="password" th:field="*{password}" autocomplete="current-password"
+                   required maxlength="72" aria-describedby="password-error"
+                   th:attr="aria-invalid=${#fields.hasErrors('password')}">
+            <p id="password-error" class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+        <p th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.globalErrors()}"
+           th:text="${error}" role="alert"></p>
+        <button class="button" type="submit" th:text="#{auth.login.submit}">Sign in</button>
+    </form>
+    <p class="auth-switch"><span th:text="#{auth.login.new}">New to Eco-Nomz?</span> <a th:href="@{/register}" th:text="#{auth.login.create}">Create an account</a></p>
+  </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

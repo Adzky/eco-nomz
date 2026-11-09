@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{market.title})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="marketplace">
+    <section class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow" th:text="#{market.eyebrow}">Good food. Less waste.</p>
+            <h1 th:text="#{market.title}">Rescue a delicious deal</h1>
+            <p th:text="#{market.intro}">Discover surplus food from local restaurants at a lower price. Every rescued meal is a win for you and the planet.</p>
+            <a class="button hero-link" href="#discovery-heading" th:text="#{market.findOffer}">Find an offer</a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+            <span class="hero-visual-label" th:text="#{market.freshFinds}">Fresh finds</span>
+            <div class="hero-plate"></div>
+        </div>
+    </section>
+
+    <section class="discovery" aria-labelledby="discovery-heading">
+        <h2 id="discovery-heading" th:text="#{market.findOffer}">Find an offer</h2>
+        <form class="filters" th:action="@{/offers}" method="get">
+            <div class="filter-field search-field">
+                <label for="q" th:text="#{market.searchLabel}">Offer or restaurant</label>
+                <div class="search-control">
+                    <input id="q" name="q" type="search" maxlength="100"
+                           th:placeholder="#{market.searchPlaceholder}" placeholder="Try nasi, bakery, or restaurant name"
+                           th:value="${q}">
+                    <button type="submit" th:text="#{market.search}">Search offers</button>
+                </div>
+            </div>
+            <div class="filter-field">
+                <label for="minPrice" th:text="#{market.minimumPrice}">Minimum price (Rp)</label>
+                <input id="minPrice" name="minPrice" type="number" min="0" step="0.01"
+                       th:value="${minPrice}">
+            </div>
+            <div class="filter-field">
+                <label for="maxPrice" th:text="#{market.maximumPrice}">Maximum price (Rp)</label>
+                <input id="maxPrice" name="maxPrice" type="number" min="0" step="0.01"
+                       th:value="${maxPrice}">
+            </div>
+            <div class="filter-field">
+                <label for="minQuantity" th:text="#{market.minimumQuantity}">At least this many available</label>
+                <input id="minQuantity" name="minQuantity" type="number" min="1" max="1000000"
+                       th:value="${minQuantity}">
+            </div>
+            <div class="filter-field">
+                <label for="sort" th:text="#{market.sortBy}">Sort by</label>
+                <select id="sort" name="sort">
+                    <option value="NEWEST" th:selected="${sort.name() == 'NEWEST'}" th:text="#{market.sortNewest}">Newest</option>
+                    <option value="PICKUP" th:selected="${sort.name() == 'PICKUP'}" th:text="#{market.sortPickup}">Pickup time</option>
+                    <option value="PRICE_LOW" th:selected="${sort.name() == 'PRICE_LOW'}" th:text="#{market.sortPriceLow}">Price: low to high</option>
+                    <option value="PRICE_HIGH" th:selected="${sort.name() == 'PRICE_HIGH'}" th:text="#{market.sortPriceHigh}">Price: high to low</option>
+                </select>
+            </div>
+            <div class="filter-actions">
+                <a th:href="@{/offers}" th:text="#{market.clearFilters}">Clear filters</a>
+            </div>
+        </form>
+    </section>
+
+    <section class="results" aria-labelledby="results-heading">
+        <div class="results-heading">
+            <h2 id="results-heading" th:text="#{market.availableOffers}">Available offers</h2>
+            <p th:text="#{common.offerCount(${offers.totalElements})}"></p>
+        </div>
+        <p class="empty-state" th:if="${offers.empty}">
+            <span th:text="#{market.noResults}">No offers match these filters yet. Try changing your search or clearing the filters to see every available deal.</span>
+            <a th:href="@{/offers}" th:text="#{market.clearAll}">Clear all filters</a>
+        </p>
+        <div class="offer-grid" th:unless="${offers.empty}">
+            <article class="offer-card" th:each="offer : ${offers.content}">
+                <div class="offer-art" aria-hidden="true"><span th:text="#{market.freshFinds}">Fresh finds</span></div>
+                <div class="card-content">
+                    <p class="restaurant-name">
+                        <a th:href="@{/restaurants/{id}(id=${offer.restaurant.id})}"
+                           th:text="${offer.restaurant.name}"></a>
+                    </p>
+                    <h3><a th:href="@{/offers/{id}(id=${offer.id})}" th:text="${offer.title}"></a></h3>
+                    <p class="offer-description" th:if="${offer.description != null}"
+                       th:text="${offer.description}"></p>
+                    <address th:text="${offer.restaurant.address}"></address>
+                    <p class="pickup">
+                        <span th:text="#{market.pickupWindow}">Pickup window</span>:
+                        <time th:text="${#temporals.format(offer.pickupStart, 'd MMM, HH:mm')}"></time>
+                        –
+                        <time th:text="${#temporals.format(offer.pickupEnd, 'HH:mm')}"></time>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p class="price">
+                        <del th:text="${'Rp ' + #numbers.formatDecimal(offer.originalPrice, 1, 'POINT', 0, 'COMMA')}"></del>
+                        <strong th:text="${'Rp ' + #numbers.formatDecimal(offer.discountedPrice, 1, 'POINT', 0, 'COMMA')}"></strong>
+                    </p>
+                    <p class="quantity"><span class="deal-label"
+                           th:text="#{market.saveAmount(${#numbers.formatDecimal(offer.originalPrice - offer.discountedPrice, 1, 'POINT', 0, 'COMMA')})}"></span><br>
+                        <span th:text="#{common.available(${offer.quantityAvailable})}"></span>
+                    </p>
+                    <a class="details-link" th:href="@{/offers/{id}(id=${offer.id})}"><span th:text="#{market.offerDetails}">See offer details</span> <span aria-hidden="true">→</span></a>
+                </div>
+            </article>
+        </div>
+
+        <nav class="pagination" th:if="${offers.totalPages > 1}" th:aria-label="#{market.offerPages}">
+            <a th:if="${offers.hasPrevious()}"
+               th:href="@{/offers(page=${offers.number - 1},q=${q},minPrice=${minPrice},maxPrice=${maxPrice},minQuantity=${minQuantity},sort=${sort})}">
+                <span th:text="#{common.previous}">Previous</span>
+            </a>
+            <span><span th:text="#{common.page}">Page</span> <span th:text="${offers.number + 1}"></span> <span th:text="#{common.of}">of</span>
+                <span th:text="${offers.totalPages}"></span></span>
+            <a th:if="${offers.hasNext()}"
+               th:href="@{/offers(page=${offers.number + 1},q=${q},minPrice=${minPrice},maxPrice=${maxPrice},minQuantity=${minQuantity},sort=${sort})}">
+                <span th:text="#{common.next}">Next</span>
+            </a>
+        </nav>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

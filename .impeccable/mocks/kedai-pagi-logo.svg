@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <rect width="1200" height="750" fill="#f7f8f3"/>
+  <circle cx="360" cy="375" r="118" fill="#edf5e6" stroke="#28630f" stroke-width="10"/>
+  <path d="M283 380c16 67 57 101 77 101s61-34 77-101" fill="none" stroke="#28630f" stroke-linecap="round" stroke-width="14"/>
+  <path d="M295 383h130" fill="none" stroke="#28630f" stroke-linecap="round" stroke-width="14"/>
+  <path d="M323 323c-19-28-15-51 8-69 15 24 16 47-8 69Zm42-4c-4-35 12-58 45-65 3 31-10 53-45 65Z" fill="#60ab21"/>
+  <path d="M326 281c-3-18 2-31 13-42m62 44c8-17 8-31 1-44" fill="none" stroke="#ff7a00" stroke-linecap="round" stroke-width="10"/>
+  <text x="530" y="376" fill="#17251d" font-family="Georgia, serif" font-size="76" font-weight="700">Kedai Pagi</text>
+  <path d="M535 406h365" stroke="#60ab21" stroke-width="5" stroke-linecap="round"/>
+  <text x="535" y="454" fill="#526056" font-family="Arial, sans-serif" font-size="30" letter-spacing="3">SARAPAN | KOPI | ROTI</text>
+</svg>

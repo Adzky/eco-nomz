@@ -1,0 +1,493 @@
+{
+  "schemaVersion": 3,
+  "stage": "components",
+  "id": "components",
+  "title": "Plan and asset review · DESIGNPLAN.md",
+  "comp": {
+    "path": ".impeccable/mocks/crop-focus-landscape.png",
+    "width": 1440,
+    "height": 900
+  },
+  "specSha256": "bb6afd68123ce7b47c18161fc10fdedbeba4528903cee7817736b0e888b14118",
+  "components": [
+    {
+      "id": "square-logo-preview",
+      "name": "Square logo preview",
+      "kind": "control",
+      "role": "plan",
+      "box": {
+        "x": 0.6646,
+        "y": 0.4044,
+        "w": 0.1792,
+        "h": 0.2867
+      },
+      "note": "Preview control renders the same uploaded source using the current square crop transform; no separate image asset",
+      "medium": "code",
+      "preview": {
+        "kind": "comp-crop"
+      },
+      "codeDrawn": true,
+      "dependencies": []
+    },
+    {
+      "id": "brand-logo",
+      "name": "Brand logo",
+      "kind": "image",
+      "role": "asset",
+      "box": {
+        "x": 0.0333,
+        "y": 0.0222,
+        "w": 0.1028,
+        "h": 0.0378
+      },
+      "note": "Existing Eco-Nomz horizontal mark in the site header",
+      "medium": "raster",
+      "preview": {
+        "kind": "image",
+        "path": "assets/plates/brand-logo.png"
+      },
+      "dependencies": []
+    },
+    {
+      "id": "crop-source-photo",
+      "name": "Crop source photo",
+      "kind": "image",
+      "role": "asset",
+      "box": {
+        "x": 0.1764,
+        "y": 0.3367,
+        "w": 0.4236,
+        "h": 0.4678
+      },
+      "note": "Landscape Kedai Pagi logo sample shown beneath the crop controls; real source content comes from the owner's upload",
+      "medium": "raster",
+      "preview": {
+        "kind": "image",
+        "path": "assets/plates/crop-source-photo.png"
+      },
+      "dependencies": []
+    }
+  ],
+  "codeRegions": [
+    {
+      "id": "overview-nav",
+      "name": "Overview nav",
+      "kind": "text",
+      "box": {
+        "x": 0.4014,
+        "y": 0.03,
+        "w": 0.0514,
+        "h": 0.0244
+      },
+      "note": "Overview navigation label"
+    },
+    {
+      "id": "restaurants-nav",
+      "name": "Restaurants nav",
+      "kind": "text",
+      "box": {
+        "x": 0.4618,
+        "y": 0.03,
+        "w": 0.0563,
+        "h": 0.0244
+      },
+      "note": "Active Restaurants navigation label"
+    },
+    {
+      "id": "offers-nav",
+      "name": "Offers nav",
+      "kind": "text",
+      "box": {
+        "x": 0.5396,
+        "y": 0.03,
+        "w": 0.0319,
+        "h": 0.0244
+      },
+      "note": "Offers navigation label"
+    },
+    {
+      "id": "reservations-nav",
+      "name": "Reservations nav",
+      "kind": "text",
+      "box": {
+        "x": 0.5771,
+        "y": 0.03,
+        "w": 0.0611,
+        "h": 0.0244
+      },
+      "note": "Reservations navigation label"
+    },
+    {
+      "id": "language-switch",
+      "name": "Language switch",
+      "kind": "text",
+      "box": {
+        "x": 0.8986,
+        "y": 0.03,
+        "w": 0.0354,
+        "h": 0.0244
+      },
+      "note": "English and Indonesian language switch"
+    },
+    {
+      "id": "account-avatar",
+      "name": "Account avatar",
+      "kind": "text",
+      "box": {
+        "x": 0.9556,
+        "y": 0.03,
+        "w": 0.0194,
+        "h": 0.0311
+      },
+      "note": "Owner account avatar initial"
+    },
+    {
+      "id": "restaurant-setup-back",
+      "name": "Restaurant setup back",
+      "kind": "text",
+      "box": {
+        "x": 0.1417,
+        "y": 0.1222,
+        "w": 0.0993,
+        "h": 0.0244
+      },
+      "note": "Back link to restaurant setup"
+    },
+    {
+      "id": "step-progress",
+      "name": "Step progress",
+      "kind": "control",
+      "box": {
+        "x": 0.2674,
+        "y": 0.1589,
+        "w": 0.4792,
+        "h": 0.0311
+      },
+      "note": "Four-step progress sequence with the logo step active"
+    },
+    {
+      "id": "active-logo-step-indicator",
+      "name": "Active logo step indicator",
+      "kind": "control",
+      "box": {
+        "x": 0.4,
+        "y": 0.1533,
+        "w": 0.0583,
+        "h": 0.0467
+      },
+      "note": "Active Logo step number and adjacent progress connector"
+    },
+    {
+      "id": "step-details-label",
+      "name": "Step details label",
+      "kind": "text",
+      "box": {
+        "x": 0.2896,
+        "y": 0.1589,
+        "w": 0.0361,
+        "h": 0.0278
+      },
+      "note": "Completed Details step label"
+    },
+    {
+      "id": "step-logo-label",
+      "name": "Step logo label",
+      "kind": "text",
+      "box": {
+        "x": 0.4292,
+        "y": 0.1589,
+        "w": 0.0417,
+        "h": 0.0278
+      },
+      "note": "Active Logo step label"
+    },
+    {
+      "id": "step-pickup-label",
+      "name": "Step pickup label",
+      "kind": "text",
+      "box": {
+        "x": 0.5639,
+        "y": 0.1589,
+        "w": 0.0437,
+        "h": 0.0278
+      },
+      "note": "Pickup step label"
+    },
+    {
+      "id": "step-publish-label",
+      "name": "Step publish label",
+      "kind": "text",
+      "box": {
+        "x": 0.7042,
+        "y": 0.1589,
+        "w": 0.0417,
+        "h": 0.0278
+      },
+      "note": "Publish step label"
+    },
+    {
+      "id": "crop-title",
+      "name": "Crop title",
+      "kind": "text",
+      "box": {
+        "x": 0.4222,
+        "y": 0.2211,
+        "w": 0.1569,
+        "h": 0.0378
+      },
+      "note": "Primary heading: Position your logo"
+    },
+    {
+      "id": "crop-instruction",
+      "name": "Crop instruction",
+      "kind": "text",
+      "box": {
+        "x": 0.3604,
+        "y": 0.2656,
+        "w": 0.2875,
+        "h": 0.0278
+      },
+      "note": "Instruction explaining that dragging selects the customer-facing crop"
+    },
+    {
+      "id": "crop-editor-surface",
+      "name": "Crop editor surface",
+      "kind": "chrome",
+      "box": {
+        "x": 0.1417,
+        "y": 0.3133,
+        "w": 0.4924,
+        "h": 0.5689
+      },
+      "note": "White crop editor surface framing the image and its editing controls"
+    },
+    {
+      "id": "crop-interaction",
+      "name": "Crop interaction",
+      "kind": "control",
+      "box": {
+        "x": 0.1764,
+        "y": 0.3367,
+        "w": 0.4236,
+        "h": 0.4678
+      },
+      "note": "Adjustable square crop, dimmed overflow, drag handles, and image positioning interaction"
+    },
+    {
+      "id": "rotate-left-control",
+      "name": "Rotate left control",
+      "kind": "control",
+      "box": {
+        "x": 0.1764,
+        "y": 0.82,
+        "w": 0.0597,
+        "h": 0.04
+      },
+      "note": "Rotate image left control"
+    },
+    {
+      "id": "rotate-left-label",
+      "name": "Rotate left label",
+      "kind": "text",
+      "box": {
+        "x": 0.1854,
+        "y": 0.8278,
+        "w": 0.0437,
+        "h": 0.0244
+      },
+      "note": "Rotate left button label"
+    },
+    {
+      "id": "rotate-right-control",
+      "name": "Rotate right control",
+      "kind": "control",
+      "box": {
+        "x": 0.2424,
+        "y": 0.82,
+        "w": 0.0681,
+        "h": 0.04
+      },
+      "note": "Rotate image right control"
+    },
+    {
+      "id": "rotate-right-label",
+      "name": "Rotate right label",
+      "kind": "text",
+      "box": {
+        "x": 0.2514,
+        "y": 0.8278,
+        "w": 0.0507,
+        "h": 0.0244
+      },
+      "note": "Rotate right button label"
+    },
+    {
+      "id": "reset-crop-control",
+      "name": "Reset crop control",
+      "kind": "control",
+      "box": {
+        "x": 0.3167,
+        "y": 0.82,
+        "w": 0.041,
+        "h": 0.04
+      },
+      "note": "Reset crop control"
+    },
+    {
+      "id": "reset-crop-label",
+      "name": "Reset crop label",
+      "kind": "text",
+      "box": {
+        "x": 0.3271,
+        "y": 0.8278,
+        "w": 0.0229,
+        "h": 0.0244
+      },
+      "note": "Reset button label"
+    },
+    {
+      "id": "zoom-label",
+      "name": "Zoom label",
+      "kind": "text",
+      "box": {
+        "x": 0.4813,
+        "y": 0.8278,
+        "w": 0.0257,
+        "h": 0.0244
+      },
+      "note": "Zoom control label"
+    },
+    {
+      "id": "zoom-slider",
+      "name": "Zoom slider",
+      "kind": "control",
+      "box": {
+        "x": 0.5125,
+        "y": 0.8289,
+        "w": 0.0854,
+        "h": 0.0222
+      },
+      "note": "Image zoom range slider"
+    },
+    {
+      "id": "preview-panel",
+      "name": "Preview panel",
+      "kind": "chrome",
+      "box": {
+        "x": 0.65,
+        "y": 0.3133,
+        "w": 0.2083,
+        "h": 0.5689
+      },
+      "note": "Quiet preview panel containing the square logo result and upload requirements"
+    },
+    {
+      "id": "preview-heading",
+      "name": "Preview heading",
+      "kind": "text",
+      "box": {
+        "x": 0.6646,
+        "y": 0.3356,
+        "w": 0.0903,
+        "h": 0.0278
+      },
+      "note": "Logo preview heading"
+    },
+    {
+      "id": "preview-caption",
+      "name": "Preview caption",
+      "kind": "text",
+      "box": {
+        "x": 0.6646,
+        "y": 0.37,
+        "w": 0.0694,
+        "h": 0.0244
+      },
+      "note": "Square crop caption"
+    },
+    {
+      "id": "requirements-heading",
+      "name": "Requirements heading",
+      "kind": "text",
+      "box": {
+        "x": 0.6646,
+        "y": 0.7044,
+        "w": 0.1181,
+        "h": 0.0222
+      },
+      "note": "Image requirements heading"
+    },
+    {
+      "id": "file-format-requirement",
+      "name": "File format requirement",
+      "kind": "text",
+      "box": {
+        "x": 0.6646,
+        "y": 0.73,
+        "w": 0.0903,
+        "h": 0.0222
+      },
+      "note": "Accepted formats: PNG or JPEG"
+    },
+    {
+      "id": "file-size-requirement",
+      "name": "File size requirement",
+      "kind": "text",
+      "box": {
+        "x": 0.6646,
+        "y": 0.7544,
+        "w": 0.0938,
+        "h": 0.0222
+      },
+      "note": "Maximum image size: 10 MB"
+    },
+    {
+      "id": "required-logo-notice",
+      "name": "Required logo notice",
+      "kind": "text",
+      "box": {
+        "x": 0.6715,
+        "y": 0.8089,
+        "w": 0.1618,
+        "h": 0.0478
+      },
+      "note": "Notice that a logo is required before restaurant publishing"
+    },
+    {
+      "id": "choose-file-action",
+      "name": "Choose file action",
+      "kind": "text",
+      "box": {
+        "x": 0.1417,
+        "y": 0.9178,
+        "w": 0.1097,
+        "h": 0.0278
+      },
+      "note": "Select a different file action"
+    },
+    {
+      "id": "apply-crop-control",
+      "name": "Apply crop control",
+      "kind": "control",
+      "box": {
+        "x": 0.7208,
+        "y": 0.9067,
+        "w": 0.1375,
+        "h": 0.0467
+      },
+      "note": "Primary action to apply the crop and continue"
+    },
+    {
+      "id": "apply-crop-label",
+      "name": "Apply crop label",
+      "kind": "text",
+      "box": {
+        "x": 0.7312,
+        "y": 0.9178,
+        "w": 0.1181,
+        "h": 0.0278
+      },
+      "note": "Apply crop and continue button label"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{restaurants.title})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="page-container">
+    <div class="page-heading">
+        <div><p class="eyebrow" th:text="#{restaurants.eyebrow}">Meet your neighborhood</p><h1 th:text="#{restaurants.title}">Local restaurants</h1>
+            <p th:text="#{restaurants.intro}">Discover the kitchens making good food go further.</p></div>
+    </div>
+    <p class="empty-state" th:if="${#lists.isEmpty(restaurants)}" th:text="#{restaurants.empty}">No restaurants are published yet. Please check back soon.</p>
+    <ul class="restaurant-list" th:unless="${#lists.isEmpty(restaurants)}">
+        <li th:each="restaurant : ${restaurants}">
+            <img th:if="${restaurant.logoUrl != null}" th:src="${restaurant.logoUrl}" th:alt="${restaurant.name}" width="88" height="88" loading="lazy">
+            <a th:href="@{/restaurants/{id}(id=${restaurant.id})}" th:text="${restaurant.name}"></a>
+            <address th:text="${restaurant.address}"></address>
+        </li>
+    </ul>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

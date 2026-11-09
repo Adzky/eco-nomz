@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f3">
+    <title th:text="#{owner.restaurantForm.logoTool} + ' | ' + #{brand.name}">Position your logo | Eco-Nomz</title>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <link rel="icon" type="image/png" th:href="@{/economz-symbol.png}">
+    <link rel="stylesheet" th:href="@{/owner/logo-crop/assets/style.css}">
+</head>
+<body>
+<div id="root"
+     th:attr="data-language=${#locale.language},data-restaurant-id=${restaurantId},data-logo-url=${logoUrl}"></div>
+<script type="module" th:src="@{/owner/logo-crop/app.js}"></script>
+</body>
+</html>

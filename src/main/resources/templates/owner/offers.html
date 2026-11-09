@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{owner.offers.title})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="page-container">
+    <div class="page-heading">
+        <div><p class="eyebrow" th:text="#{owner.workspace}">Restaurant workspace</p><h1 th:text="#{owner.offers.title}">Your food offers</h1>
+            <p th:text="#{owner.offers.intro}">Manage your published deals and the surplus stock customers can reserve.</p></div>
+        <a class="button" th:href="@{/owner/offers/new}" th:text="#{owner.offers.create}">Create an offer</a>
+    </div>
+    <p th:if="${successMessage}" th:text="${#messages.msgOrNull(successMessage) != null ? #messages.msg(successMessage) : successMessage}" role="status"></p>
+    <p class="empty-state" th:if="${offers.empty}">
+        <span th:text="#{owner.offers.empty}">You have not created any offers yet. Publish an offer when you have surplus food to share.</span>
+        <a th:href="@{/owner/offers/new}" th:text="#{owner.offers.createFirst}">Create your first offer</a>
+    </p>
+    <ul class="management-list" th:unless="${offers.empty}">
+        <li th:each="offer : ${offers.content}">
+            <div class="management-item-main">
+                <a class="management-title" th:href="@{/owner/offers/{id}/edit(id=${offer.id})}" th:text="${offer.title}"></a>
+                <span th:text="${offer.restaurant.name}"></span>
+            </div>
+            <span class="status-badge" th:classappend="${offer.status.name() == 'SOLD_OUT' or offer.status.name() == 'EXPIRED' ? ' status-muted' : ''}"
+                  th:text="#{${'status.' + offer.status.name()}}"></span>
+            <span class="available-count" th:text="#{common.available(${offer.quantityAvailable})}"></span>
+        </li>
+    </ul>
+    <nav th:if="${offers.totalPages > 1}" th:aria-label="#{market.offerPages}">
+        <a th:if="${offers.hasPrevious()}"
+           th:href="@{/owner/offers(page=${offers.number - 1})}" th:text="#{common.previous}">Previous</a>
+        <span><span th:text="#{common.page}">Page</span> <span th:text="${offers.number + 1}"></span> <span th:text="#{common.of}">of</span>
+            <span th:text="${offers.totalPages}"></span></span>
+        <a th:if="${offers.hasNext()}"
+           th:href="@{/owner/offers(page=${offers.number + 1})}" th:text="#{common.next}">Next</a>
+    </nav>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

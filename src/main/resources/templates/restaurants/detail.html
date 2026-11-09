@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${restaurant.name})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="page-container">
+    <p class="breadcrumb"><a th:href="@{/restaurants}" th:text="'← ' + #{restaurant.back}">← All restaurants</a></p>
+    <section class="restaurant-profile content-card">
+        <img th:if="${restaurant.logoUrl != null}" class="restaurant-logo" th:src="${restaurant.logoUrl}" th:alt="${restaurant.name}">
+        <p class="eyebrow" th:text="#{restaurant.eyebrow}">Proudly local</p>
+        <h1 th:text="${restaurant.name}"></h1>
+        <p class="page-intro" th:if="${restaurant.description != null}" th:text="${restaurant.description}"></p>
+        <address class="restaurant-address" th:text="${restaurant.address}"></address>
+    <p th:if="${restaurant.latitude != null and restaurant.longitude != null}">
+        <span th:text="#{restaurant.location}">Location</span>: <span th:text="${restaurant.latitude}"></span>,
+        <span th:text="${restaurant.longitude}"></span>
+    </p>
+        <a class="button button-secondary" th:href="@{/offers}" th:text="#{restaurant.browseOffers}">Browse rescued food</a>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

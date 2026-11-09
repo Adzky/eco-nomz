@@ -1,0 +1,45 @@
+{
+  "title": "Choose a layout structure",
+  "question": "Which page structure should guide the customer, restaurant-owner, and admin surfaces? Choose a layout or ask for another hand.",
+  "options": [
+    {
+      "id": "role-home",
+      "kind": "assigned",
+      "label": "Role home + next action",
+      "kicker": "THE ROLL",
+      "thesis": "Each role lands on its next useful task, with marketplace activity kept close.",
+      "palette": ["#f7f8f3", "#ffffff", "#28630f", "#60ab21", "#ff7a00"],
+      "materials": ["existing Eco-Nomz logo", "soft green canvas", "white content surfaces"],
+      "viewport": "A familiar top navigation leads into a role-specific next action and compact marketplace or operations summary.",
+      "risk": "An overview can add a step for customers whose only task is browsing.",
+      "html": ".impeccable/mocks/decision/01-role-home.html"
+    },
+    {
+      "id": "work-queue",
+      "kind": "dealt",
+      "label": "Work queue + selected record",
+      "thesis": "A focused queue and adjacent details keep review and pickup tasks in one place.",
+      "palette": ["#f7f8f3", "#ffffff", "#28630f", "#60ab21", "#ff7a00"],
+      "materials": ["existing Eco-Nomz logo", "soft green canvas", "white content surfaces"],
+      "viewport": "Role navigation stays familiar while a filterable reservation list sits beside the selected order and pickup action.",
+      "risk": "A dense two-pane pattern can feel cramped outside owner and admin workflows.",
+      "html": ".impeccable/mocks/decision/02-work-queue.html"
+    },
+    {
+      "id": "guided-steps",
+      "kind": "dealt",
+      "label": "Guided steps + active task",
+      "thesis": "A short progress rail makes multi-step setup and checkout feel manageable.",
+      "palette": ["#f7f8f3", "#ffffff", "#28630f", "#60ab21", "#ff7a00"],
+      "materials": ["existing Eco-Nomz logo", "soft green canvas", "white content surfaces"],
+      "viewport": "A visible step sequence frames one focused task, with clear progress and the required square restaurant-logo upload.",
+      "risk": "Persistent step framing may over-structure simple browsing and moderation tasks.",
+      "html": ".impeccable/mocks/decision/03-guided-steps.html"
+    }
+  ],
+  "reroll": true,
+  "steer": true,
+  "buildPath": {
+    "value": "code"
+  }
+}

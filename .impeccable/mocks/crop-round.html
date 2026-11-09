@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eco-Nomz — crop composition review</title>
+<style>
+:root{color-scheme:light;--ink:#17251d;--muted:#526056;--line:#dce4d8;--green:#28630f;--lime:#60ab21;--paper:#f7f8f3;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.top{height:68px;background:var(--white);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px)}
+.brand img{display:block;width:145px;height:38px;object-fit:cover;object-position:center}
+.tag{color:var(--muted);font-size:13px;font-weight:650}
+main{max-width:1480px;margin:0 auto;padding:34px clamp(20px,4vw,60px) 48px}
+h1{font-size:30px;line-height:1.15;letter-spacing:-.7px;margin:0}
+.intro{max-width:720px;color:var(--muted);margin:9px 0 24px}
+.options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.option{min-width:0;background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.option figure{margin:0;background:#eef1e9;border-bottom:1px solid var(--line)}
+.option img{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:contain}
+.copy{padding:18px 19px 20px}
+.number{display:inline-grid;place-items:center;width:25px;height:25px;margin-right:8px;border:1px solid #aebcaf;border-radius:50%;font-size:12px;font-weight:700;color:var(--green);vertical-align:2px}
+h2{display:inline;font-size:18px;line-height:1.3;letter-spacing:-.25px}
+.copy p{color:var(--muted);font-size:14px;margin:10px 0 0}
+.tradeoff{margin-top:12px!important;font-size:13px!important}
+.tradeoff strong{color:var(--ink)}
+.prompt{margin-top:22px;padding:15px 18px;border:1px solid var(--line);border-radius:9px;background:#edf5e6;color:#38513d}
+.prompt strong{color:var(--ink)}
+@media(max-width:680px) and (min-width:501px){main{padding:22px 18px 34px}.options{gap:9px}.copy{padding:12px}.number{width:21px;height:21px;margin-right:4px}h2{font-size:15px}.copy p{font-size:12px;line-height:1.4}.tradeoff{margin-top:8px!important;font-size:11px!important}}
+@media(max-width:500px){main{padding-top:26px}.options{grid-template-columns:1fr}.option{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(240px,.7fr)}.option figure{border:0;border-right:1px solid var(--line);display:flex;align-items:center}.option img{aspect-ratio:8/5}.copy{align-self:center}}
+@media(max-width:620px){.top{height:60px}.tag{display:none}main{padding:22px 15px 34px}h1{font-size:25px}.option{display:block}.option figure{border:0;border-bottom:1px solid var(--line)}.copy{padding:15px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#" aria-label="Eco-Nomz"><img src="../../src/main/resources/static/economz-logo-horizontal.png" alt="Eco-Nomz"></a>
+  <span class="tag">DESIGN REVIEW · OWNER IMAGE SETUP</span>
+</header>
+<main>
+  <h1>Choose the crop experience</h1>
+  <p class="intro">All three studies preserve the selected “Guided steps + active task” direction. The sample logo is landscape (1200 × 750); square uploads should skip this step. Compare how each balances setup progress, hands-on editing, and the customer-facing preview.</p>
+  <section class="options" aria-label="Crop editor composition options">
+    <article class="option">
+      <figure><img src="crop-rail.png" alt="Crop editor with vertical setup steps, crop canvas, square preview, and crop controls"></figure>
+      <div class="copy">
+        <span class="number">1</span><h2>Step rail + active editor</h2>
+        <p>A persistent setup rail keeps the owner oriented while the crop task and square preview share the workspace.</p>
+        <p class="tradeoff"><strong>Watch for:</strong> the rail may take space from image editing on narrower screens.</p>
+      </div>
+    </article>
+    <article class="option">
+      <figure><img src="crop-split.png" alt="Crop editor with horizontal progress, split workspace, and square preview"></figure>
+      <div class="copy">
+        <span class="number">2</span><h2>Horizontal progress + split editor</h2>
+        <p>A compact progress strip frees the viewport for a side-by-side crop editor and customer-facing preview.</p>
+        <p class="tradeoff"><strong>Watch for:</strong> the split layout needs a deliberate stack on mobile.</p>
+      </div>
+    </article>
+    <article class="option">
+      <figure><img src="crop-focus-landscape.png" alt="Large focused crop canvas beside a compact logo preview and requirements"></figure>
+      <div class="copy">
+        <span class="number">3</span><h2>Focused canvas + preview</h2>
+        <p>The crop canvas leads at generous scale; a quieter side panel verifies the resulting logo and file rules.</p>
+        <p class="tradeoff"><strong>Watch for:</strong> editing may feel more prominent than checking the final result.</p>
+      </div>
+    </article>
+  </section>
+  <p class="prompt"><strong>Confirmed:</strong> Option 3 remains the selected layout with the corrected landscape sample; square uploads should skip cropping. These are desktop north-star studies, not final production screens.</p>
+</main>
+</body>
+</html>

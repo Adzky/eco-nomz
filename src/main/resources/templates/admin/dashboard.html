@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{admin.title})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="page-container">
+    <div class="page-heading">
+        <div><p class="eyebrow" th:text="#{admin.eyebrow}">Platform operations</p><h1 th:text="#{admin.title}">Administration</h1>
+            <p th:text="#{admin.intro}">Monitor marketplace activity and keep Eco-Nomz safe for everyone.</p></div>
+    </div>
+    <section class="admin-metrics" th:aria-label="#{admin.overview}">
+        <article class="metric-card"><span th:text="#{admin.accounts}">Accounts</span><strong th:text="${summary.users}"></strong></article>
+        <article class="metric-card"><span th:text="#{admin.restaurants}">Restaurants</span><strong th:text="${summary.restaurants}"></strong></article>
+        <article class="metric-card"><span th:text="#{admin.offers}">Offers</span><strong th:text="${summary.offers}"></strong></article>
+        <article class="metric-card"><span th:text="#{admin.hiddenRestaurants}">Hidden restaurants</span><strong th:text="${summary.moderatedRestaurants}"></strong></article>
+        <article class="metric-card"><span th:text="#{admin.hiddenOffers}">Hidden offers</span><strong th:text="${summary.moderatedOffers}"></strong></article>
+    </section>
+    <section class="admin-links" th:aria-label="#{admin.tools}">
+        <a class="action-card" th:href="@{/admin/users}"><strong th:text="#{admin.manageAccounts}">Manage accounts</strong><span><span th:text="#{admin.accountIntro}">Review account access and status.</span> →</span></a>
+        <a class="action-card" th:href="@{/admin/restaurants}"><strong th:text="#{admin.moderateRestaurants}">Moderate restaurants</strong><span><span th:text="#{admin.restaurantIntro}">Review restaurant visibility.</span> →</span></a>
+        <a class="action-card" th:href="@{/admin/offers}"><strong th:text="#{admin.moderateOffers}">Moderate offers</strong><span><span th:text="#{admin.offerIntro}">Review listings and moderation notes.</span> →</span></a>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

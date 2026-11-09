@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(#{admin.moderateRestaurants})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="page-container">
+    <p class="breadcrumb"><a th:href="@{/admin}" th:text="'← ' + #{admin.back}">← Administration</a></p>
+    <div class="page-heading"><div><p class="eyebrow" th:text="#{admin.eyebrow}">Platform operations</p><h1 th:text="#{admin.moderateRestaurants}">Moderate restaurants</h1>
+        <p th:text="#{admin.restaurants.intro}">Hide listings that need review or restore them when they are ready to be visible.</p></div></div>
+    <p th:if="${successMessage}" th:text="${#messages.msgOrNull(successMessage) != null ? #messages.msg(successMessage) : successMessage}" role="status"></p>
+    <p class="empty-state" th:if="${restaurants.empty}" th:text="#{admin.restaurants.empty}">No restaurants found.</p>
+    <table th:unless="${restaurants.empty}">
+        <thead><tr><th th:text="#{common.restaurant}">Restaurant</th><th th:text="#{common.owner}">Owner</th><th th:text="#{admin.publication}">Publication</th><th th:text="#{admin.moderation}">Moderation</th><th th:text="#{common.action}">Action</th></tr></thead>
+        <tbody>
+        <tr th:each="restaurant : ${restaurants.content}">
+            <td data-label="Restaurant" th:attr="data-label=#{common.restaurant}" th:text="${restaurant.name}"></td>
+            <td data-label="Owner" th:attr="data-label=#{common.owner}"><span th:text="${restaurant.ownerName}"></span> (<span th:text="${restaurant.ownerEmail}"></span>)</td>
+            <td data-label="Publication" th:attr="data-label=#{admin.publication}"><span class="status-badge"
+                    th:text="${restaurant.published ? #messages.msg('common.published') : #messages.msg('common.draft')}"></span></td>
+            <td data-label="Moderation" th:attr="data-label=#{admin.moderation}"><span class="status-badge" th:classappend="${restaurant.moderated ? ' status-danger' : ''}"
+                    th:text="${restaurant.moderated ? #messages.msg('common.hiddenByAdmin') : #messages.msg('common.visible')}"></span></td>
+            <td data-label="Action" th:attr="data-label=#{common.action}">
+                <form th:action="@{/admin/restaurants/{id}/moderation(id=${restaurant.id})}" method="post"
+                      th:onsubmit="|return confirm('#{admin.restaurantConfirm}');|">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <input type="hidden" name="moderated" th:value="${!restaurant.moderated}">
+                    <button th:class="${restaurant.moderated ? 'button-secondary' : 'button-danger'}" type="submit"
+                            th:text="${restaurant.moderated ? #messages.msg('admin.restore') : #messages.msg('admin.hide')}"></button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav th:if="${restaurants.totalPages > 1}" th:aria-label="#{admin.restaurantPages}">
+        <a th:if="${restaurants.hasPrevious()}" th:href="@{/admin/restaurants(page=${restaurants.number - 1})}" th:text="#{common.previous}">Previous</a>
+        <span><span th:text="#{common.page}">Page</span> <span th:text="${restaurants.number + 1}"></span> <span th:text="#{common.of}">of</span> <span th:text="${restaurants.totalPages}"></span></span>
+        <a th:if="${restaurants.hasNext()}" th:href="@{/admin/restaurants(page=${restaurants.number + 1})}" th:text="#{common.next}">Next</a>
+    </nav>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
