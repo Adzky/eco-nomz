@@ -98,4 +98,28 @@ docs/           deployment and security docs
 
 ## Deployment
 
+### Free hosting: Render + Neon
+
+The repo includes a `Dockerfile` (a multi-stage build tuned for 512 MB instances) and a `render.yaml` Blueprint.
+
+1. **Database:** create a free PostgreSQL project on [Neon](https://neon.tech). Convert its connection string `postgres://USER:PASS@HOST/DB` into:
+   - `DB_URL=jdbc:postgresql://HOST/DB?sslmode=require`
+   - `DB_USERNAME=USER`
+   - `DB_PASSWORD=PASS`
+2. **App:** on [Render](https://render.com), choose **New → Blueprint** and select this repository. Render reads `render.yaml`, creates a free Docker web service, and generates `JWT_SECRET` for you.
+3. Fill in the prompted secrets: the DB values, Midtrans Sandbox keys, Cloudinary credentials, and `MIDTRANS_PUBLIC_BASE_URL=https://<your-service>.onrender.com`.
+4. Deploy. Flyway migrates the database on first start, and every push to `main` redeploys.
+5. In the Midtrans Sandbox dashboard, set the payment notification URL to `https://<your-service>.onrender.com/payments/midtrans/notifications`.
+
+Free-tier notes: the service sleeps after about 15 minutes idle, and the first request after that takes 30–60 seconds while it wakes up.
+
+To try the production image locally:
+
+```bash
+docker build -t eco-nomz .
+docker run -p 8080:8080 -e DB_URL=... -e DB_USERNAME=... -e DB_PASSWORD=... -e JWT_SECRET=... eco-nomz
+```
+
+### More
+
 See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) and [docs/SECURITY-CHECKLIST.md](docs/SECURITY-CHECKLIST.md). Production runs with the `prod` Spring profile and reads every credential from environment variables.

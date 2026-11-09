@@ -49,7 +49,10 @@ public class SecurityConfig {
                         .includeSubDomains(false)
                         .maxAgeInSeconds(requireHttps ? 31_536_000 : 0)));
         if (requireHttps) {
-            http.requiresChannel(channel -> channel.anyRequest().requiresSecure());
+            // Platform health probes (e.g. Render) hit the container over plain HTTP on the
+            // private network, so exempt them from the redirect; everything else must be HTTPS.
+            http.redirectToHttps(https -> https.requestMatchers(
+                    request -> !request.getRequestURI().startsWith("/actuator/health")));
         }
         return http.build();
     }
